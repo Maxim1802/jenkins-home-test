@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><flow-definition plugin="workflow-job@1181.va_25d15548158">
+  <description/>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <EnvInjectJobProperty plugin="envinject@2.866.v5c0403e3d4df">
+      <info>
+        <propertiesContent>VERSION=4.6.1
+REACT_APP_GA_KEY=UA-76767601-1
+API_ENDPOINT=https://app.dev.explorersurgical.com
+APPLICATION_ID=com.explorersurgical.app.dev 
+CORE_VERSION=Release-4.6.1
+LANE=dev
+DATA_DOG_TOKEN=pub858f34c94ea294a2c8f6a6742d83fa4d
+DATA_DOG_APP_ID=807fbf19-00b3-4fb6-9bfa-aab423ea4202
+</propertiesContent>
+        <secureGroovyScript plugin="script-security@1172.v35f6a_0b_8207e">
+          <script/>
+          <sandbox>false</sandbox>
+        </secureGroovyScript>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>false</overrideBuildParameters>
+    </EnvInjectJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2692.v76b_089ccd026">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@4.11.3">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+        <hudson.plugins.git.UserRemoteConfig>
+          <url>https://github.com/Explorer-Surgical/explorer-mobile-native.git</url>
+          <credentialsId>explorer_github</credentialsId>
+        </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+        <hudson.plugins.git.BranchSpec>
+          <name>*/Release-4.6.1</name>
+        </hudson.plugins.git.BranchSpec>
+      </branches>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <submoduleCfg class="empty-list"/>
+      <extensions>
+        <hudson.plugins.git.extensions.impl.GitLFSPull/>
+      </extensions>
+    </scm>
+    <scriptPath>Jenkinsfile-android</scriptPath>
+    <lightweight>true</lightweight>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>

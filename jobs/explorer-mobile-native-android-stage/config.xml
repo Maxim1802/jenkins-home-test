@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><flow-definition plugin="workflow-job@1181.va_25d15548158">
+  <description/>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <EnvInjectJobProperty plugin="envinject@2.866.v5c0403e3d4df">
+      <info>
+        <propertiesContent>VERSION=4.6.1
+REACT_APP_GA_KEY=UA-119417676-1
+API_ENDPOINT=https://app.stage.explorersurgical.com
+APPLICATION_ID=com.explorersurgical.app.stage 
+CORE_VERSION=Release-4.6.1
+LANE=stage
+DATA_DOG_TOKEN=pube4e9bd3a558e52ad5b86f45cf3bb130d
+DATA_DOG_APP_ID=cd7e9814-6ff9-4c4d-95ef-288e8b686ded</propertiesContent>
+        <secureGroovyScript plugin="script-security@1172.v35f6a_0b_8207e">
+          <script/>
+          <sandbox>false</sandbox>
+        </secureGroovyScript>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>false</overrideBuildParameters>
+    </EnvInjectJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2692.v76b_089ccd026">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@4.11.3">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+        <hudson.plugins.git.UserRemoteConfig>
+          <url>https://github.com/Explorer-Surgical/explorer-mobile-native.git</url>
+          <credentialsId>explorer_github</credentialsId>
+        </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+        <hudson.plugins.git.BranchSpec>
+          <name>*/Release-4.6.1</name>
+        </hudson.plugins.git.BranchSpec>
+      </branches>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <submoduleCfg class="empty-list"/>
+      <extensions>
+        <hudson.plugins.git.extensions.impl.GitLFSPull/>
+      </extensions>
+    </scm>
+    <scriptPath>Jenkinsfile-android</scriptPath>
+    <lightweight>true</lightweight>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><flow-definition plugin="workflow-job@1181.va_25d15548158">
+  <description/>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <EnvInjectJobProperty plugin="envinject@2.866.v5c0403e3d4df">
+      <info>
+        <propertiesContent>REPO=explorer-manager
+NS=explorer-stage
+AWS_ACCOUNT=872854894403
+REGION=us-east-1
+AWS_USER=Jenkins_AWS_Stage
+APP_NAME=explorer-manager
+REACT_APP_API_ENDPOINT=https://app.stage.explorersurgical.com
+REACT_APP_EXPLORER_LIVE=https://app.stage.explorersurgical.com/live
+REACT_APP_VERSION=4.6.1
+REACT_APP_DATA_DOG_APP_ID=d3422ec3-e535-4b9f-8c87-8e27d4b9369c
+REACT_APP_DATA_DOG_TOKEN=pubd85c0150e9bff9e654d43e9f7e81ecdf
+REACT_APP_DATA_DOG_SERVICE=explorer-manager-stage</propertiesContent>
+        <secureGroovyScript plugin="script-security@1172.v35f6a_0b_8207e">
+          <script/>
+          <sandbox>false</sandbox>
+        </secureGroovyScript>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>false</overrideBuildParameters>
+    </EnvInjectJobProperty>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers>
+        <hudson.triggers.SCMTrigger>
+          <spec/>
+          <ignorePostCommitHooks>false</ignorePostCommitHooks>
+        </hudson.triggers.SCMTrigger>
+      </triggers>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2692.v76b_089ccd026">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@4.11.3">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+        <hudson.plugins.git.UserRemoteConfig>
+          <url>https://github.com/Explorer-Surgical/explorer-manager.git</url>
+          <credentialsId>explorer_github</credentialsId>
+        </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+        <hudson.plugins.git.BranchSpec>
+          <name>*/Release-4.6.1</name>
+        </hudson.plugins.git.BranchSpec>
+      </branches>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <submoduleCfg class="empty-list"/>
+      <extensions/>
+    </scm>
+    <scriptPath>Jenkinsfile</scriptPath>
+    <lightweight>true</lightweight>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
